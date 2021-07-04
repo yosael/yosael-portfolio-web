@@ -1,6 +1,7 @@
 import BaseLayout from '../../components/layouts/BaseLayout';
 import router, { useRouter } from 'next/router'
 import axios from 'axios';
+import BasePage from '../../components/BasePage';
 
 const Portfolio = ({post}) =>{
 
@@ -8,10 +9,12 @@ const Portfolio = ({post}) =>{
 
     return (
         <BaseLayout>
-            <h1>This is portfolio new</h1>
-            <h1>{post.title}</h1>
-            <p>BODY: {post.body}</p>
-            <p>ID: {post.id}</p>
+            <BasePage>
+                <h1>This is portfolio new</h1>
+                <h1>{post.title}</h1>
+                <p>BODY: {post.body}</p>
+                <p>ID: {post.id}</p>
+            </BasePage>
         </BaseLayout>
     );
 }
