@@ -4,6 +4,7 @@ import axios from 'axios';
 export const useGetPosts = () =>{
     const [posts, setPosts] = useState([]);
     const [error, setError] = useState();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function getPosts (){
@@ -12,6 +13,7 @@ export const useGetPosts = () =>{
 
                 const res = await axios.get('/api/v1/posts');
                 setPosts(res.data.posts);
+                setLoading(false);
                 
             } catch (error) {
                 if (error.response){
@@ -23,12 +25,15 @@ export const useGetPosts = () =>{
                     console.log("message",error.message);
                     setError(error.message);
                  }
+
+                 setLoading(false);
             }
+
         
         }
 
         getPosts();
     }, []);
 
-    return {posts, error}
+    return {posts, error, loading}
 }

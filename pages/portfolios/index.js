@@ -6,8 +6,7 @@ import { useGetPosts } from '@/actions';
 
 const Portfolios = () => {
 
-    const { posts, error } = useGetPosts();
-
+    const { posts, error, loading } = useGetPosts();
     const renderPosts = (posts)=>{
         return posts.map( post => 
             <li key={post.id}>
@@ -21,6 +20,10 @@ const Portfolios = () => {
         <BaseLayout>
             <BasePage>
                 <h1>Hello Portfolios</h1>
+                {
+                    loading &&
+                    <p>Loading ...</p>
+                }
                 {
                     posts &&
                     <ul>
