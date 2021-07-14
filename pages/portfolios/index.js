@@ -1,12 +1,15 @@
 import BaseLayout from '@/components/layouts/BaseLayout';
 import Link from 'next/link';
 import BasePage from '@/components/BasePage';
-import { useGetData } from '@/actions';
+import { useGetPosts } from '@/actions';
 
 
 const Portfolios = () => {
 
-    const { data, error, loading } = useGetData('/api/v1/posts');
+    const { data, error, isValidating } = useGetPosts();
+    console.log("data received: ",data);
+    console.log("error received: ",error);
+    console.log("isValidating: ",isValidating);
     const renderPosts = (posts)=>{
         return posts.map( post => 
             <li key={post.id}>
@@ -21,13 +24,13 @@ const Portfolios = () => {
             <BasePage>
                 <h1>Hello Portfolios</h1>
                 {
-                    loading &&
+                    (!data && !error) &&
                     <p>Loading ...</p>
                 }
                 {
                     data &&
                     <ul>
-                        {renderPosts(data)}
+                        {renderPosts(data.payload)}
                     </ul>
                 }
                 {
