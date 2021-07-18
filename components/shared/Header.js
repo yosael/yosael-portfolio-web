@@ -19,9 +19,9 @@ const BsNavLink = props => {
 }
 
 
-const LoginLink = () => <span className="nav-link port-navbar-link clickable">Login</span>
+const LoginLink = () => <BsNavLink href="/api/auth/login" title="Login" />
 
-const LogoutLink = () => <span className="nav-link port-navbar-link clickable">Logout</span>
+const LogoutLink = () => <BsNavLink href="/api/auth/logout" title="Logout" />
 
 
 const Header = () => {
@@ -37,7 +37,7 @@ const Header = () => {
         expand="md">
         <div className="navbar-brand">
           <Link href="/">
-            <a className="port-navbar-brand">Filip Jerga</a>
+            <a className="port-navbar-brand">Yosael Gutierrez</a>
           </Link>
           </div>
         <NavbarToggler onClick={toggle} />
@@ -51,6 +51,9 @@ const Header = () => {
             </NavItem>
             <NavItem className="port-navbar-item">
               <BsNavLink href="/portfolios" title="Portfolios"/>
+            </NavItem>
+            <NavItem className="port-navbar-item">
+              <BsNavLink href="/profile" title="Profile"/>
             </NavItem>
             <NavItem className="port-navbar-item">
               <BsNavLink href="/blogs" title="Blogs"/>
