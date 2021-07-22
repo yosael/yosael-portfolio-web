@@ -1,5 +1,6 @@
 import BaseLayout from '@/components/layouts/BaseLayout';
 import BasePage from '@/components/BasePage';
+import withAuth from '../components/hoc/WithAuth';
 
 const Cv = () => {
     return (
@@ -11,4 +12,4 @@ const Cv = () => {
     )
 }
 
-export default Cv;
+export default withAuth(Cv);

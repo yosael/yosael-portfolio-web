@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useUser } from '@auth0/nextjs-auth0';
 import {
   Collapse,
   Navbar,
@@ -27,6 +28,8 @@ const LogoutLink = () => <BsNavLink href="/api/auth/logout" title="Logout" />
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
+
+  const { user, error, isLoading } = useUser();
 
   return (
     <div>
@@ -62,13 +65,25 @@ const Header = () => {
               <BsNavLink href="/cv" title="Cv"/>
             </NavItem>
           </Nav>
-          <Nav navbar className="margin-inline-end">
-            <NavItem className="port-navbar-item">
-              <LoginLink />
-            </NavItem>
-            <NavItem className="port-navbar-item">
-              <LogoutLink />
-            </NavItem>
+          <Nav navbar >{/*className="margin-inline-end"*/}
+            {
+              !isLoading &&
+              <>
+                {
+                  user &&
+                  <NavItem className="port-navbar-item">
+                    <LogoutLink />
+                  </NavItem>
+                }
+                {
+                  !user &&
+                  <NavItem className="port-navbar-item">
+                    <LoginLink />
+                  </NavItem>
+                }
+              </>
+            }
+            
           </Nav>
         </Collapse>
       </Navbar>
