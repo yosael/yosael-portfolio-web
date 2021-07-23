@@ -8,7 +8,7 @@ export const Secretssr = ({ user }) => {
     return (
         <BaseLayout>
             <BasePage>
-                <h1>Hello Secretssr {user}</h1>
+                <h1>Hello Secretssr {user.nickname}</h1>
             </BasePage>
         </BaseLayout>
     )
@@ -24,8 +24,11 @@ export const getServerSideProps = async({req,res}) =>{
         res.end();
         return {props: {}};
     }
+
+    const { nickname,name } = session.user;
     return {
-        props: { user: session.user.name}
+        
+        props: { user: { nickname, name} }
     }
 }
 
