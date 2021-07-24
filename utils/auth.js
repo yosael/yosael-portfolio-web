@@ -25,3 +25,8 @@ export const withAuth = () => async ({req,res}) => {
     
     return {props: {user:session.user }} ;
 }
+
+export const isAuthorized = (user, role) => {
+    return (user && user['https://yosael.portfolio' + '/roles'].includes(role));
+  }
+  

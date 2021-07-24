@@ -30,6 +30,7 @@ const Header = () => {
   const toggle = () => setIsOpen(!isOpen);
 
   const { user, error, isLoading } = useUser();
+  console.log(user);
 
   return (
     <div>
@@ -63,6 +64,9 @@ const Header = () => {
             </NavItem>
             <NavItem className="port-navbar-item">
               <BsNavLink href="/cv" title="Cv"/>
+            </NavItem>
+            <NavItem className="port-navbar-item">
+              <BsNavLink href="/onlyadmin" title="Admin"/>
             </NavItem>
           </Nav>
           <Nav navbar >{/*className="margin-inline-end"*/}

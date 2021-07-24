@@ -12,4 +12,4 @@ const Cv = () => {
     )
 }
 
-export default withAuth(Cv);
+export default withAuth(Cv)();
