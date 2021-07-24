@@ -12,3 +12,16 @@ export const authorizeUser = async (req, res) => {
     
     return session.user;
 }
+
+export const withAuth = () => async ({req,res}) => {
+    const session = await getSession(req,res);
+    if(!session || !session.user){
+        res.writeHead(302,{
+            Location: '/api/auth/login'
+        });
+        res.end();
+        return {props:{}};
+    }
+    
+    return {props: {user:session.user }} ;
+}

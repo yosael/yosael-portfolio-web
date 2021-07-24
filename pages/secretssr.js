@@ -1,7 +1,6 @@
 import BaseLayout from '@/components/layouts/BaseLayout';
 import BasePage from '@/components/BasePage';
-import withAuth from "../components/hoc/WithAuth";
-import { authorizeUser } from '@/utils/auth';
+import { authorizeUser, withAuth } from '@/utils/auth';
 
 
 export const Secretssr = ({ user }) => {
@@ -15,12 +14,14 @@ export const Secretssr = ({ user }) => {
 }
 
 
-export const getServerSideProps = async({req,res}) =>{
+/*export const getServerSideProps = async({req,res}) =>{
     const user = await authorizeUser(req,res);
     return {
         props: { user }
     }
-}
+}*/
+
+export const getServerSideProps = withAuth();
 
 //export default withAuth(Secretssr);
 export default Secretssr;
